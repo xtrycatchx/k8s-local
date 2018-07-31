@@ -1,0 +1,14 @@
+{
+  "name": "hello-world-app",
+  "version": "1.0.0",
+  "description": "dev workshop/testing only",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "xtrycatchx",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

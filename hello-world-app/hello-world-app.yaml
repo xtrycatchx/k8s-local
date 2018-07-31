@@ -1,0 +1,39 @@
+# Deployment
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: hello-world-app
+  name: hello-world-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: hello-world-app-exposed
+  template:
+    metadata:
+      labels:
+        run: hello-world-app-exposed
+    spec:
+      containers:
+      - image: localhost:5000/hello-world-app:0.0.1
+        name: hello-world-app
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+---
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: hello-world-app
+  name: hello-world-app
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    run: hello-world-app-exposed
+  type: NodePort
